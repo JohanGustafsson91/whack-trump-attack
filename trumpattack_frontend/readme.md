@@ -1,4 +1,6 @@
-# A boilerplate with React and Redux
+# Whack trump attack - frontend
+
+### A boilerplate with React and Redux
 
 Features:
 * Webpack 2
