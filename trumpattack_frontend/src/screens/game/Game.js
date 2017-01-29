@@ -12,6 +12,7 @@ import Playing from './Playing'
 import GameOver from './GameOver'
 import GameError from './GameError'
 
+// TODO Send update to backend about leaving game.
 window.onbeforeunload = () => 'You will lose the Game.'
 
 const Game = ({activeComponent}) => (
@@ -56,14 +57,8 @@ const mapStateToProps = ({game, location}) => ({
 
 const life = lifecycle({
 	componentDidMount() {
-		console.log(this.props)
-		// const { game, location, findTheGame } = this.props
-		// const {location} = this.props
-		//
 		if (!this.props.status && this.props.params.gameId) {
-			console.log('find game')
 			this.props.dispatch(findGame(this.props.params.gameId))
-			// findTheGame(location.params.gameId)
 		}
 	}
 })

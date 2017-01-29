@@ -8,12 +8,12 @@ import Board from './Board'
 import Player from './Player'
 import Time from './Time'
 
-const Playing = ({game: {players, gameInfo, whacks}, handleSmash}) => {
+const Playing = ({game: {gameInfo, whacks}, player, opponent, handleSmash}) => {
 	return (
 		<div>
 			<div>
-				<Player name={players[0].name} score={players[0].score}	/>
-				<Player name={players[1].name} score={players[1].score}	/>
+				<Player name={player.name} score={player.score}	/>
+				<Player name={opponent.name} score={opponent.score}	/>
 				<Time time={gameInfo.time} />
 			</div>
 
@@ -35,6 +35,8 @@ const mapStateToProps = ({game}) => ({game})
 
 const mergeProps = (props, {onSmash}) => ({
 	...props,
+	player: props.game.players.find(player => player.id === props.game.me),
+	opponent: props.game.players.find(player => player.id !== props.game.me),
 	handleSmash: value => onSmash(value, props.game.gameInfo.gameId)
 })
 

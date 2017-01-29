@@ -9,22 +9,31 @@ export const initialState = {
 	whacks: []
 }
 
+// TODO add actions as constants
+
 export default handleActions({
 	'server/CREATE_GAME': state => ({
-		...state,
-		gameInfo: { status: 'INIT' }
+		...state, gameInfo: { status: 'INIT' }
 	}),
-	'client/GAME_CREATED': (state, {game: {players, gameInfo, whacks}, playerId}) => {
+
+	'client/GAME_CREATED': (state, {
+		game: {players, gameInfo, whacks}, playerId
+	}) => {
 		browserHistory.push(`/game/${gameInfo.gameId}`)
 		return { players, gameInfo, whacks, me: playerId }
 	},
-	'client/FIND_GAME_SUCCESS': (state, {game: {players, gameInfo, whacks}, playerId}) => ({
+
+	'client/FIND_GAME_SUCCESS': (state, {
+		game: {players, gameInfo, whacks}, playerId
+	}) => ({
 		players, gameInfo: {...gameInfo, status: 'JOIN_GAME'}, whacks, me: playerId
 	}),
+
 	'client/FIND_GAME_ERROR': (state, {game}) => ({
-		...game
+		...state, ...game
 	}),
+
 	'client/GAME_UPDATE': (state, {game}) => ({
-		...game
+		...state, ...game
 	})
 }, initialState)
