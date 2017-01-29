@@ -1,0 +1,9 @@
+.menu__item {
+	font-weight: bold;
+	margin-right: 15px;
+	text-decoration: none;
+}
+
+.menu__item--active {
+	text-decoration: underline;
+}

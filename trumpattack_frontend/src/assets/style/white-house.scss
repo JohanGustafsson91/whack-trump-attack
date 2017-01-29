@@ -1,0 +1,138 @@
+
+.white-house__heaven {
+	background-color: #ADDCF6;
+	width: 100%;
+	height: 100vh;
+}
+
+.white-house__grass {
+	background-color: #17B925;
+	width: 100%;
+	height: 25vh;
+	position: absolute;
+	bottom: 0;
+}
+
+.white-house__container {
+	background-color: #fff;
+	width: 80%;
+	margin-left: 10%;
+	padding: 0 2%;
+	height: 50vh;
+	position: absolute;
+	bottom: 20vh;
+	border: 2px solid #000;
+	border-top: none;
+}
+
+.white-house__window {
+	width: 8%;
+	height: 40%;
+	background-color: #000;
+	margin: 2.5vh 1.5%;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.white__house__stair--container {
+	width: 27.3%;
+  margin-left: 36%;
+  height: 68.5%;
+  background-color: transparent;;
+  position: absolute;
+  bottom: 18%;
+}
+
+.white-house__stair {
+	width: 100%;
+  height: 4%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  border: 1px solid #000;
+	z-index: 1;
+
+	&:nth-child(2) {
+		width: 104%;
+		margin-left: -2%;
+		bottom: -3.5%;
+  }
+
+	&:nth-child(3) {
+		width: 108%;
+		margin-left: -4%;
+		bottom: -7%;
+  }
+}
+
+.white-house__pillar {
+	width: 6%;
+	left: 1%;
+	background-color: #fff;
+	border: 1px solid #000;
+	height: 76%;
+	position: absolute;
+	bottom: 0;
+
+	&:nth-child(2) {
+		left: 32%;
+  }
+
+	&:nth-child(3) {
+		left: 62%;
+  }
+
+	&:nth-child(4) {
+		left: 93%;
+  }
+}
+
+.white-house__roof-back {
+	width: 100%;
+	height: 12%;
+	position: absolute;
+	top: 12%;
+	background-color: #fff;
+	border: 1px solid #000;
+	border-bottom: none;
+	z-index: 0;
+}
+
+.white-house__roof-back-fence {
+	width: 100%;
+	height: 10%;
+	position: absolute;
+	left: 0;
+	top: -9.5%;
+	padding: 0.5% 0;
+	background-color: #fff;
+	border: 2px solid #000;
+}
+
+.white-house__roof-back-fence-hole {
+	width: 2%;
+	height: 100%;
+	background-color: #ADDCF6;
+	border: 1px solid #000;
+	display: inline-block;
+	margin: 0 1%;
+	border-radius: 25%;
+}
+
+.white-house__roof-front {
+	border-left: 26vh solid transparent;
+  border-right: 26vh solid transparent;
+  border-bottom: 18vh solid #000;
+  position: absolute;
+  top: 0.4%;
+}
+
+.white-house__roof-front-inner {
+	border-left: 26vh solid transparent;
+  border-right: 26vh solid transparent;
+  border-bottom: 18vh solid #fff;
+  position: absolute;
+  top: 0.4%;
+}

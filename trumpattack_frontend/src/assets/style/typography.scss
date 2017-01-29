@@ -1,0 +1,35 @@
+a {
+	color: $blue-color;
+	text-transform: uppercase;
+
+	&:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
+
+.text-center {
+	text-align: center;
+}
+
+.logo {
+	font-size: 50px;
+	margin-bottom: 48px;
+}
+
+.error {
+	color: red;
+}
+
+.countdown {
+	-webkit-animation: color-change 1s infinite;
+  -moz-animation: color-change 1s infinite;
+  -o-animation: color-change 1s infinite;
+  -ms-animation: color-change 1s infinite;
+  animation: color-change 1s infinite;
+}
+
+@-webkit-keyframes color-change {
+    0% { color: $white-color; }
+    100% { color: $blue-color; }
+}

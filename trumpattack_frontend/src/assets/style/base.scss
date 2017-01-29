@@ -1,0 +1,57 @@
+@import 'node_modules/foundation-sites/scss/foundation';
+$breakpoint-classes: (small medium large xlarge xxlarge);
+@include foundation-everything;
+
+@import './color';
+@import './form';
+@import './loading';
+@import './typography';
+@import './white-house';
+@import './board';
+@import './game-info';
+@import './whack';
+
+body, html {
+	margin: 0;
+	padding: 0;
+	font-family: 'Overpass', sans-serif;
+	color: $white-color;
+}
+
+.section {
+	width: 50%;
+	height: 80vh;
+	position: absolute;
+	top: 0;
+	left: 25%;
+	padding-top: 20vh;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.no-margin-top {
+	margin-top: 0;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.padding {
+	padding: 48px;
+}
+
+.margin-bottom {
+		margin-bottom: 24px;
+}
+
+.margin-top {
+		margin-top: 24px;
+}
+
+.hidden {
+	visibility: hidden;
+	display: none;
+}

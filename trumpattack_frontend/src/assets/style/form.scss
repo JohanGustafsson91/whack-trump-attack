@@ -1,0 +1,47 @@
+.btn {
+	border-radius: 150px;
+	outline: 0;
+	border: 0;
+	width: 100%;
+	padding: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: $blue-color;
+	color: $white-color;
+	border: 1px solid transparent;
+
+	&:hover {
+		border: 1px solid $white-color;
+		cursor: pointer;
+	}
+
+	&:disabled {
+		border: 1px solid transparent;
+		cursor: pointer;
+		color: darken($white-color, 75%);
+	}
+}
+
+.btn__active {
+	background-color: $green-color;
+	border: 1px solid $green-color;
+}
+
+.text-input {
+	border: 0;
+	border-bottom: 1px solid $white-color;
+	outline: 0;
+	padding: 12px;
+	width: 100%;
+	background-color: inherit;
+	color: $white-color;
+	box-shadow: none;
+
+	&:focus {
+		border: 0;
+		border-bottom: 2px solid $white-color;
+		background-color: inherit;
+		outline: none;
+		box-shadow: none;
+	}
+}

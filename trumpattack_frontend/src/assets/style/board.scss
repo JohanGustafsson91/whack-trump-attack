@@ -1,0 +1,18 @@
+.board {
+	margin-top: 80px;
+}
+
+.box {
+	background-color: #000;
+	margin: 24px 5px;
+	width: calc((100% / 5) - 10px);
+	height: calc(50vh / 8);
+	border-radius: 25px;
+	display: inline-block;
+	position: relative;
+	float: left;
+}
+
+.score {
+	color: $green-color;
+}

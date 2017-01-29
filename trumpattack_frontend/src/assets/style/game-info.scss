@@ -1,0 +1,39 @@
+.player__stat {
+	position: absolute;
+	width: 100px;
+	top: 1%;
+	left: 1%;
+	text-align: center;
+
+	&:nth-child(2) {
+		left: inherit;
+		right: 1%;
+  }
+}
+
+.player__stat-name {
+	text-transform: uppercase;
+}
+
+.player__stat-score {
+	font-size: 30px;
+	color: $black-color;
+}
+
+.time-left__container {
+	position: absolute;
+	width: 100px;
+	top: 1%;
+	left: calc(50% - 50px);
+	text-align: center;
+}
+
+.time-left__title {
+	color: $black-color;
+	text-transform: uppercase;
+}
+
+.time-left__time {
+	font-size: 40px;
+	color: $white-color;
+}

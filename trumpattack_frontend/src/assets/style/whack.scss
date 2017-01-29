@@ -1,0 +1,31 @@
+.whack {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: transparent;
+	top: 30%;
+	animation: jump-in 0.3s linear;
+	text-align: center;
+
+	&:hover {
+		cursor: crosshair;
+	}
+
+	.face {
+		position: relative;
+		z-index: 1;
+		height: 50%;
+		width: auto;
+	}
+
+	.suit {
+		position: relative;
+		margin-top: -50%;
+	}
+
+}
+
+@-webkit-keyframes jump-in {
+    0% { top: 100%; height: 0; }
+    100% { top: 50%; height: 100% }
+}
