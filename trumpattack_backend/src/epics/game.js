@@ -56,7 +56,7 @@ export const playGameEpic = action$ =>
 export const updateGameEpic = action$ =>
 	action$.ofType(INTERNAL.UPDATE_GAME)
 		.switchMap(({gameId, time}) =>
-			GAME.updateGame(gameId, time)
+			GAME.updateGameTime(gameId, time)
 				.then(game => COM.sendGameUpdate(game, clients))
 				.catch(err => console.error(err))
 		)

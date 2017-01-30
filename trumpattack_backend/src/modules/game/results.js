@@ -1,33 +1,51 @@
+import {
+	getBoardWithNumberRemoved,
+	getWinners,
+	findInArray,
+	getSortedArray
+} from './selectors'
+
 const R = require('ramda')
 
-// En funktion som fyller på tre whacks
-export const getWhacks = () => [1, 3, 9]
+export const updateBoard = (numbers, numberToRemove) => R.concat(
+	getBoardWithNumberRemoved(numbers, numberToRemove),
+	getNewUniqueNumberToBoard(numbers)
+)
 
-export const updateWhacks = (whacks, smashed) => {
-	const smashedWhackRemoved = whacks.filter(whack => whack !== smashed)
-	return R.concat(smashedWhackRemoved, [getNewWhack(whacks)])
+export const getGameBoard = (total, board = []) => {
+	R.range(0, total).forEach(() => {
+		board = updateBoard(board, -1)
+	})
+
+	return board
 }
 
-function getNewWhack(currentWhacks) {
-	let newWhack = getRandomWhack()
-	newWhack = whackAlreadyExists(currentWhacks, newWhack) ? null : newWhack
-	return newWhack ? newWhack : getNewWhack(currentWhacks)
-}
+export const updateScore = (players, playerId) => players.map(player => ({
+	...player,
+	score: player.id === playerId ? player.score + 1 : player.score
+}))
 
-function getRandomWhack() {
-	return parseInt(Math.random() * 18, 10) + 0
-}
-
-function whackAlreadyExists(currentWhacks, newWhack) {
-	return currentWhacks.filter(whack => whack === newWhack).length > 0
-}
-
-export function getResult(players) {
-	const sortedPlayers = players.sort((a, b) => b.score - a.score)
-	const winners = sortedPlayers.filter(player => player.score === sortedPlayers[0].score)
+export const getResult = players => {
+	const sortedPlayers = getSortedArray(players, 'score', false)
+	const winners = getWinners(sortedPlayers)
 
 	return {
 		winner: winners.length === 2 ? null : winners[0].id,
-		players: sortedPlayers
+		players: getSortedArray(players, 'score', false)
 	}
+}
+
+function getNewUniqueNumberToBoard(currentNumbers) {
+	let newNumber = getRandomNumber(0, 18, 10)
+	newNumber = alreadyExistsInBoard(currentNumbers, newNumber) ? null : newNumber
+
+	return newNumber ? [newNumber] : getNewUniqueNumberToBoard(currentNumbers)
+}
+
+function getRandomNumber(fromNumber, toNumber, base) {
+	return parseInt(Math.random() * toNumber, base) + fromNumber
+}
+
+function alreadyExistsInBoard(currentNumber, newNumber) {
+	return findInArray(currentNumber, newNumber).length > 0
 }

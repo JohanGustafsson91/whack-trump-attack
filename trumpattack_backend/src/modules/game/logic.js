@@ -1,22 +1,13 @@
 import { generate } from 'shortid'
 import { Observable } from 'rxjs'
-import { games, clients } from '../../stores'
+import { games } from '../../stores'
 import { store } from '../../server'
-import { getWhacks, updateWhacks, getResult } from './results'
+import { getGameBoard, updateBoard, updateScore, getResult } from './results'
 import { INTERNAL } from './actions'
-
-/**
- * TODO
- * Add constants statuses
- * Add constants errors
- * Add selectors
- */
 
 export const createGame = (name, creator) => {
 	const gameInfo = {
-		players: [
-			{ name, id: creator.id, score: 0 }
-		],
+		players: [{ name, id: creator.id, score: 0 }],
 		gameInfo: {
 			gameId: generate(),
 			status: 'WAITING',
@@ -28,42 +19,18 @@ export const createGame = (name, creator) => {
 		whacks: []
 	}
 
-	games.set(gameInfo.gameInfo.gameId, gameInfo)
-
-	return games.get(gameInfo.gameInfo.gameId)
+	return games.addGame(gameInfo.gameInfo.gameId, gameInfo)
 }
 
 export const findGame = gameId => new Promise((resolve, reject) => {
-	const game = games.get(gameId)
-
-	if (!game) {
-		reject('The game doesnt exists')
-	}
-
-	if (!clients.isActive(game.gameInfo.creator)) {
-		reject('The challenger cant be found')
-	}
-
+	const game = games.getGame(gameId, reject, false)
 	game.gameInfo.inviteSeen = true
 
 	resolve(game)
 })
 
 export const joinGame = (gameId, name, newPlayer) => new Promise((resolve, reject) => {
-	const game = games.get(gameId)
-
-	if (!game) {
-		reject('The game doesnt exists')
-	}
-
-	if (!clients.isActive(game.gameInfo.creator)) {
-		reject('The challenger cant be found')
-	}
-
-	if (game.players.length === 2) {
-		reject('There are already two players in the game')
-	}
-
+	const game = games.getGame(gameId, reject, false)
 	game.players.push({	name, id: newPlayer.id, score: 0 })
 	game.gameInfo.status = 'COUNTDOWN'
 
@@ -82,25 +49,16 @@ export const countDownGame = gameId =>
 		)
 
 export const updateCountDownStartGame = (gameId, time) => new Promise((resolve, reject) => {
-	const game = games.get(gameId)
-
-	if (!game) {
-		reject('Some error happened with the game...')
-	}
-
-	if (time >= 0) {
-		// Update loading time
-		game.gameInfo.status = 'COUNTDOWN'
-		game.gameInfo.time = time
-	}
+	const game = games.getGame(gameId, reject, true)
+	game.gameInfo.time = time
 
 	resolve(game)
 })
 
 export const playGame = gameId => {
-	const game = games.get(gameId)
+	const game = games.getGame(gameId, () => {}, true)
 
-	game.whacks = getWhacks()
+	game.whacks = getGameBoard(3)
 	game.gameInfo.status = 'PLAYING'
 
 	return Observable.interval(1000)
@@ -114,55 +72,29 @@ export const playGame = gameId => {
 		)
 }
 
-export const updateGame = (gameId, time) => new Promise((resolve, reject) => {
-	const game = games.get(gameId)
-
-	if (!game) {
-		reject('Some error happened with the game...')
-	}
-
-	if (time >= 0) {
-		// Update loading time
-		game.gameInfo.status = 'PLAYING'
-		game.gameInfo.time = time
-	}
+export const updateGameTime = (gameId, time) => new Promise((resolve, reject) => {
+	const game = games.getGame(gameId, reject, true)
+	game.gameInfo.time = time
 
 	resolve(game)
 })
 
 export const updateGameBoardAndScore = (playerId, move, gameId) => new Promise((resolve, reject) => {
-	const game = games.get(gameId)
-
-	if (!game) {
-		reject('Some error happened with the game')
-	}
-
-	// Remove whack from board
-	game.whacks = updateWhacks(game.whacks, move)
-
-	// Find player and add score
-	game.players = game.players.map(player => ({
-		...player,
-		score: player.id === playerId ? player.score + 1 : player.score
-	}))
+	const game = games.getGame(gameId, reject, true)
+	game.whacks = updateBoard(game.whacks, move)
+	game.players = updateScore(game.players, playerId)
 
 	resolve(game)
 })
 
 export const getGameOverResult = gameId => new Promise((resolve, reject) => {
-	const game = games.get(gameId)
-
-	if (!game) {
-		reject('Some error happened with the game...')
-	}
-
-	// Calculate winner of round
+	const game = games.getGame(gameId, reject, true)
 	const gameResult = getResult(game.players)
 	game.players = gameResult.players
 	game.gameInfo.winner = gameResult.winner
 	game.gameInfo.status = 'GAME_OVER'
 
-	// TODO Remove game...
+	games.removeGame(game.gameInfo.gameId)
 
 	resolve(game)
 })

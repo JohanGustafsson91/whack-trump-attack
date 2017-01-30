@@ -1,9 +1,12 @@
+/**
+ * Actions for Game module
+ */
+
 export const SERVER = {
 	CREATE_GAME: 'server/CREATE_GAME',
 	FIND_GAME: 'server/FIND_GAME',
 	JOIN_GAME: 'server/JOIN_GAME',
-	PLAYER_MOVE: 'server/PLAYER_MOVE',
-	READY_FOR_NEXT_ROUND: 'server/READY_FOR_NEXT_ROUND'
+	PLAYER_MOVE: 'server/PLAYER_MOVE'
 }
 
 export const CLIENT = {
