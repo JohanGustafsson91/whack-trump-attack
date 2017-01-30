@@ -157,7 +157,9 @@ export const getGameOverResult = gameId => new Promise((resolve, reject) => {
 	}
 
 	// Calculate winner of round
-	game.players = getResult(game.players)
+	const gameResult = getResult(game.players)
+	game.players = gameResult.players
+	game.gameInfo.winner = gameResult.winner
 	game.gameInfo.status = 'GAME_OVER'
 
 	// TODO Remove game...

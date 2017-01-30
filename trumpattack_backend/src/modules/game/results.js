@@ -22,4 +22,12 @@ function whackAlreadyExists(currentWhacks, newWhack) {
 	return currentWhacks.filter(whack => whack === newWhack).length > 0
 }
 
-export const getResult = players => players.sort((a, b) => a.score - b.score)
+export function getResult(players) {
+	const sortedPlayers = players.sort((a, b) => b.score - a.score)
+	const winners = sortedPlayers.filter(player => player.score === sortedPlayers[0].score)
+
+	return {
+		winner: winners.length === 2 ? null : winners[0].id,
+		players: sortedPlayers
+	}
+}

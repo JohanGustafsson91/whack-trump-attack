@@ -12,8 +12,8 @@ import Playing from './Playing'
 import GameOver from './GameOver'
 import GameError from './GameError'
 
-// TODO Send update to backend about leaving game.
-window.onbeforeunload = () => 'You will lose the Game.'
+// TODO Send update to backend about leaving game. m
+// window.onbeforeunload = () => 'You will lose the Game.'
 
 const Game = ({activeComponent}) => (
 	<div>
