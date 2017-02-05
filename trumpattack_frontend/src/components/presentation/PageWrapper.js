@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
-import Heaven from '../background/Heaven'
-import Grass from '../background/Grass'
+import Heaven from './background/Heaven'
+import Grass from './background/Grass'
 
 const PageWrapper = ({ children, title }) => (
 	<div>
