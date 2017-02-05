@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { compose, withState, mapProps } from 'recompose'
 
-const NewGame = ({cancel, updateName, name, handleCreateGame, visible}) =>
+const GameMenuCreate = ({cancel, updateName, name, handleCreateGame, visible}) =>
 visible ? (
 	<div className="text-center">
 		<h4>Create new game</h4>
@@ -29,8 +29,9 @@ visible ? (
 	</div>
 ) : null
 
-NewGame.propTypes = {
+GameMenuCreate.propTypes = {
 	cancel: PropTypes.func.isRequired,
+	visible: PropTypes.bool.isRequired,
 	updateName: PropTypes.func.isRequired,
 	handleCreateGame: PropTypes.func.isRequired,
 	name: PropTypes.string
@@ -50,4 +51,4 @@ const addState = compose(
 	}))
 )
 
-export default addState(NewGame)
+export default addState(GameMenuCreate)

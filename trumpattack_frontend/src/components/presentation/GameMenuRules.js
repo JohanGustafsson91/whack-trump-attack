@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const GameRules = ({cancel, visible}) =>
+const GameManuRules = ({cancel, visible}) =>
 visible ? (
 	<div className="row">
 		<div className="small-12 column">
@@ -18,8 +18,9 @@ visible ? (
 	</div>
 ) : null
 
-GameRules.propTypes = {
-
+GameManuRules.propTypes = {
+	visible: PropTypes.bool.isRequired,
+	cancel: PropTypes.func.isRequired
 }
 
-export default GameRules
+export default GameManuRules

@@ -11,9 +11,9 @@ const PageWrapper = ({ children, title }) => (
 			{
 				title ?
 					<h1 className="fontcolor-white no-margin-top logo">{title}</h1> : null
-				}
+			}
 
-				{children}
+			{children}
 		</div>
 	</div>
 )

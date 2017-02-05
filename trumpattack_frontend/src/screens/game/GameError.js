@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import PageWrapper from '../../components/containers/PageWrapper'
+import PageWrapper from '../../components/presentation/PageWrapper'
 
 const GameError = ({message}) => (
 	<PageWrapper title={'Oh noo :/'}>

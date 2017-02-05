@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 
-const GameSelection = ({visible, select}) => (
+const GameMenu = ({visible, select}) => (
 	<div>
 		<div>
 			<button
@@ -25,9 +25,9 @@ const GameSelection = ({visible, select}) => (
 	</div>
 )
 
-GameSelection.propTypes = {
+GameMenu.propTypes = {
 	visible: PropTypes.bool,
 	select: PropTypes.func
 }
 
-export default GameSelection
+export default GameMenu

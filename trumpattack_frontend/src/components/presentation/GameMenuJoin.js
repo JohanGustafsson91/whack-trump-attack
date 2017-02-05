@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const JoinGame = ({cancel, visible}) =>
+const GameMenuJoin = ({cancel, visible}) =>
 visible ? (
 	<div className="row">
 		<div className="small-12 column">
@@ -18,8 +18,9 @@ visible ? (
 	</div>
 ) : null
 
-JoinGame.propTypes = {
-
+GameMenuJoin.propTypes = {
+	visible: PropTypes.bool.isRequired,
+	cancel: PropTypes.func.isRequired
 }
 
-export default JoinGame
+export default GameMenuJoin

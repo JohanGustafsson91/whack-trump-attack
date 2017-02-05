@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import PageWrapper from '../../components/containers/PageWrapper'
+import PageWrapper from '../../components/presentation/PageWrapper'
 import GameLink from './GameLink'
 import Loading from './Loading'
 

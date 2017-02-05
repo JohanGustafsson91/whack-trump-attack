@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { compose, withState, mapProps } from 'recompose'
 import { connect } from 'react-redux'
 import { joinGame } from '../../redux/modules/game/actions'
-import PageWrapper from '../../components/containers/PageWrapper'
+import PageWrapper from '../../components/presentation/PageWrapper'
 
 const JoinGame = ({challenger, updateName, name, handleJoinGame}) => (
 	<PageWrapper title={'Trump attack'}>

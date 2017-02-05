@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import PageWrapper from '../../components/containers/PageWrapper'
+import PageWrapper from '../../components/presentation/PageWrapper'
 import GameResult from './GameResult'
 
 const GameOver = ({winner, result}) => (

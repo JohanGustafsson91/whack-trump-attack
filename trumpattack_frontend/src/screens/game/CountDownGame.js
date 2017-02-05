@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { lifecycle } from 'recompose'
-import PageWrapper from '../../components/containers/PageWrapper'
+import PageWrapper from '../../components/presentation/PageWrapper'
 
 const CountDownGame = ({time}) => (
 	<PageWrapper title={'Trump attack'}>
