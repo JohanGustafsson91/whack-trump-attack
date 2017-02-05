@@ -11,7 +11,7 @@ const GameError = ({message}) => (
 )
 
 GameError.propTypes = {
-	message: PropTypes.string.isRequired
+	message: PropTypes.string
 }
 
 export default GameError

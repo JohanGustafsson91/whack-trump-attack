@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react'
 
-const GameManuRules = ({cancel, visible}) =>
+const GameMenuRules = ({cancel, visible}) =>
 visible ? (
 	<div className="row">
 		<div className="small-12 column">
-			<h4>Join Game</h4>
-			<p>
-				To be implemented....
-			</p>
+			<h4>Game Rules</h4>
+			<p>You compete against another to see who can beat Trump most times.</p>
+			<p>After a minute, there will be two winners. One who has beaten Trump most times and one who has beaten Trump.</p>
 			<p>
 				<button
 					type="button"
@@ -18,9 +17,9 @@ visible ? (
 	</div>
 ) : null
 
-GameManuRules.propTypes = {
+GameMenuRules.propTypes = {
 	visible: PropTypes.bool.isRequired,
 	cancel: PropTypes.func.isRequired
 }
 
-export default GameManuRules
+export default GameMenuRules

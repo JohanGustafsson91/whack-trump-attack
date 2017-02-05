@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import { compose, withState, mapProps } from 'recompose'
 import { createGame } from '../../redux/modules/game/actions'
 import GameMenu from '../presentation/GameMenu'
@@ -8,7 +9,7 @@ import PageWrapper from '../presentation/PageWrapper'
 import GameMenuJoin from '../presentation/GameMenuJoin'
 import GameMenuRules from '../presentation/GameMenuRules'
 
-const StartPage = ({filter, updateFilter, createNewGame}) => (
+const StartPage = ({filter, updateFilter, createNewGame, joinGame}) => (
 	<PageWrapper title={'Trump Attack'}>
 		<GameMenu
 			visible={filter === 'none'}
@@ -23,6 +24,7 @@ const StartPage = ({filter, updateFilter, createNewGame}) => (
 
 		<GameMenuJoin
 			visible={filter === 'joinGame'}
+			joinGame={joinGame}
 			cancel={() => updateFilter('none')}
 			/>
 
@@ -36,7 +38,8 @@ const StartPage = ({filter, updateFilter, createNewGame}) => (
 StartPage.propTypes = {
 	filter: PropTypes.string.isRequired,
 	updateFilter: PropTypes.func.isRequired,
-	createNewGame: PropTypes.func.isRequired
+	createNewGame: PropTypes.func.isRequired,
+	joinGame: PropTypes.func.isRequired
 }
 
 const addState = compose(
@@ -52,7 +55,8 @@ const mapStateToProps = ({game}) => ({...game})
 
 const mergeProps = (props, {createGame}) => ({
 	...props,
-	createNewGame: (name, price) => createGame(name, price)
+	createNewGame: (name, price) => createGame(name, price),
+	joinGame: gameId => browserHistory.push(`game/${gameId}`)
 })
 
 export default connect(

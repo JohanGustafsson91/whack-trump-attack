@@ -1,12 +1,21 @@
 import React, { PropTypes } from 'react'
+import { withState, compose, mapProps } from 'recompose'
+import TextInput from './TextInput'
 
-const GameMenuJoin = ({cancel, visible}) =>
+const GameMenuJoin = ({cancel, visible, updateGameId, handleJoinGame, gameId}) =>
 visible ? (
 	<div className="row">
 		<div className="small-12 column">
 			<h4>Join Game</h4>
+			<TextInput
+				placeholder={'Enter game ID'}
+				value={gameId}
+				handleChange={updateGameId} />
 			<p>
-				To be implemented....
+				<button
+					type="button"
+					className="btn"
+					onClick={handleJoinGame}>Join game</button>
 			</p>
 			<p>
 				<button
@@ -23,4 +32,18 @@ GameMenuJoin.propTypes = {
 	cancel: PropTypes.func.isRequired
 }
 
-export default GameMenuJoin
+const addState = compose(
+	withState('gameId', 'setGameId', ''),
+
+	mapProps(({ setGameId, gameId, joinGame, ...rest }) => ({
+		updateGameId: element => setGameId(element.target.value),
+		handleJoinGame: () => {
+			if (gameId.length) {
+				joinGame(gameId)
+			}
+		},
+		...rest
+	}))
+)
+
+export default addState(GameMenuJoin)

@@ -13,8 +13,11 @@ const GameScoreItem = ({colOneText, colTwoText, isHeader}) => (
 
 GameScoreItem.propTypes = {
 	colOneText: PropTypes.string,
-	colTwoText: PropTypes.string,
-	isHeader: PropTypes.bool
+	colTwoText: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	isHeader: PropTypes.string
 }
 
 export default GameScoreItem
