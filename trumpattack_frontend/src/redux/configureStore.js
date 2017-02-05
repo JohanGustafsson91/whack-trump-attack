@@ -7,7 +7,9 @@ import rootReducer from './reducers'
 const io = require('socket.io-client')
 
 const socketIoMiddleware = (() => {
-	const server = 'http://localhost:8080'
+	const server = process.env.NODE_ENV === 'development' ?
+	'http://localhost:8080/api' : '/api'
+
 	const socket = io.connect(server)
 
 	socket.on('connect', () => console.log('Connected!'))
