@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import TrumpImg from '../../assets/images/trump.png'
-import TrumpImg2 from '../../assets/images/trump2.png'
+// import TrumpImg2 from '../../assets/images/trump2.png'
 import SuitImg from '../../assets/images/suit.png'
 
 const Whack = ({value, onSmash}) => (
@@ -11,7 +11,8 @@ const Whack = ({value, onSmash}) => (
 )
 
 Whack.propTypes = {
-
+	value: PropTypes.number,
+	onSmash: PropTypes.func.isRequired
 }
 
 export default Whack

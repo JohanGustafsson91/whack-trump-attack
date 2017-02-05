@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import * as R from 'ramda'
-import WhiteHouse from '../../components/background/WhiteHouse'
+import WhiteHouse from '../../components/presentation/background/WhiteHouse'
 import Whack from './Whack'
 
 const Board = ({whacks, onSmash}) => (

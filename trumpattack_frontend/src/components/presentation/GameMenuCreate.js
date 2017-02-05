@@ -1,19 +1,16 @@
 import React, { PropTypes } from 'react'
 import { compose, withState, mapProps } from 'recompose'
+import TextInput from './TextInput'
 
 const GameMenuCreate = ({cancel, updateName, name, handleCreateGame, visible}) =>
 visible ? (
 	<div className="text-center">
 		<h4>Create new game</h4>
-		<p>
-			<input
-				type="text"
-				className="text-input"
-				placeholder="Enter your name"
-				onChange={updateName}
-				value={name}
-				/>
-		</p>
+		<TextInput
+			placeholder={"Enter your name"}
+			handleChange={updateName}
+			value={name}
+			/>
 		<p>
 			<button
 				type="button"

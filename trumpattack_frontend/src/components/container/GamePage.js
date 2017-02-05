@@ -5,23 +5,23 @@ import * as R from 'ramda'
 import { findGame } from '../../redux/modules/game/actions'
 import * as STATUS from '../../redux/modules/game/statuses'
 
-import WaitingForPlayer from './WaitingForPlayer'
+import WaitingForPlayer from '../presentation/WaitingForPlayer'
+import CountDownGame from '../presentation/CountDownGame'
+import GameError from '../presentation/GameError'
 import JoinGame from './JoinGame'
-import CountDownGame from './CountDownGame'
 import Playing from './Playing'
 import GameOver from './GameOver'
-import GameError from './GameError'
 
 // TODO Send update to backend about leaving game. m
 // window.onbeforeunload = () => 'You will lose the Game.'
 
-const Game = ({activeComponent}) => (
+const GamePage = ({activeComponent}) => (
 	<div>
 		{activeComponent}
 	</div>
 )
 
-Game.propTypes = {
+GamePage.propTypes = {
 	activeComponent: PropTypes.object.isRequired
 }
 
@@ -49,7 +49,7 @@ const mapStateToProps = ({game, location}) => ({
 				<GameError message={message} />
 			)],
 			[R.T, R.always(
-				<div key={'hehge'}>No one</div>
+				<GameError message={'Something went wrong'} />
 			)]
 		]))(status)
 	)(game.gameInfo, game.players)
@@ -63,4 +63,4 @@ const life = lifecycle({
 	}
 })
 
-export default connect(mapStateToProps)(life(Game))
+export default connect(mapStateToProps)(life(GamePage))

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import StartPage from '../components/container/StartPage'
-import Game from '../screens/game/Game'
-import NotFound from '../screens/error/NotFound'
+import GamePage from '../components/container/GamePage'
+import NotFoundPage from '../components/presentation/NotFoundPage'
 import App from './App'
 
 export const router = (
@@ -10,9 +10,9 @@ export const router = (
 		<Route path="/" component={App}>
 			<IndexRoute component={StartPage} />
 			<Route path="start" component={StartPage} />
-			<Route path="game" component={Game} />
-			<Route path="game/:gameId" component={Game} />
-			<Route path="*" component={NotFound}/>
+			<Route path="game" component={GamePage} />
+			<Route path="game/:gameId" component={GamePage} />
+			<Route path="*" component={NotFoundPage}/>
 		</Route>
 	</Router>
 )

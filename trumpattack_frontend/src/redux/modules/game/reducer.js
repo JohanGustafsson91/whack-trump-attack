@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
-import * as R from 'ramda'
 import { browserHistory } from 'react-router'
+import { SERVER, CLIENT } from './actions'
 
 export const initialState = {
 	me: null,
@@ -9,31 +9,29 @@ export const initialState = {
 	whacks: []
 }
 
-// TODO add actions as constants
-
 export default handleActions({
-	'server/CREATE_GAME': state => ({
+	[SERVER.CREATE_GAME]: state => ({
 		...state, gameInfo: { status: 'INIT' }
 	}),
 
-	'client/GAME_CREATED': (state, {
+	[CLIENT.GAME_CREATED]: (state, {
 		game: {players, gameInfo, whacks}, playerId
 	}) => {
 		browserHistory.push(`/game/${gameInfo.gameId}`)
 		return { players, gameInfo, whacks, me: playerId }
 	},
 
-	'client/FIND_GAME_SUCCESS': (state, {
+	[CLIENT.FIND_GAME_SUCCESS]: (state, {
 		game: {players, gameInfo, whacks}, playerId
 	}) => ({
 		players, gameInfo: {...gameInfo, status: 'JOIN_GAME'}, whacks, me: playerId
 	}),
 
-	'client/FIND_GAME_ERROR': (state, {game}) => ({
+	[CLIENT.FIND_GAME_ERROR]: (state, {game}) => ({
 		...state, ...game
 	}),
 
-	'client/GAME_UPDATE': (state, {game}) => ({
+	[CLIENT.GAME_UPDATE]: (state, {game}) => ({
 		...state, ...game
 	})
 }, initialState)

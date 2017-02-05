@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 
-const NotFound = () => (
+const NotFoundPage = () => (
 	<div>
 		<h1>Ooops!</h1>
 		<p>
@@ -9,6 +9,6 @@ const NotFound = () => (
 			Go to <Link to="start">Start page</Link>
 		</p>
 	</div>
-);
+)
 
-export default NotFound;
+export default NotFoundPage

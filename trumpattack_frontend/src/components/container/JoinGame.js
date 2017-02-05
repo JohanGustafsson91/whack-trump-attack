@@ -2,20 +2,17 @@ import React, { PropTypes } from 'react'
 import { compose, withState, mapProps } from 'recompose'
 import { connect } from 'react-redux'
 import { joinGame } from '../../redux/modules/game/actions'
+import TextInput from '../../components/presentation/TextInput'
 import PageWrapper from '../../components/presentation/PageWrapper'
 
 const JoinGame = ({challenger, updateName, name, handleJoinGame}) => (
 	<PageWrapper title={'Trump attack'}>
 		<h4>{`${challenger} have challenged you!`}</h4>
-		<p>
-			<input
-				type="text"
-				className="text-input"
-				placeholder="Enter your name"
-				onChange={updateName}
-				value={name}
-				/>
-		</p>
+		<TextInput
+			placeholder={'Enter your name'}
+			value={name}
+			handleChange={updateName}
+			/>
 		<p>
 			<button
 				type="button"
@@ -26,6 +23,7 @@ const JoinGame = ({challenger, updateName, name, handleJoinGame}) => (
 )
 
 JoinGame.propTypes = {
+	challenger: PropTypes.string.isRequired,
 	updateName: PropTypes.func.isRequired,
 	handleJoinGame: PropTypes.func.isRequired,
 	name: PropTypes.string
@@ -38,11 +36,7 @@ const mapStateToProps = ({game}) => ({
 
 const mergeProps = (props, {joinGame}) => ({
 	...props,
-	handleJoinGame: name => {
-		if (name.length) {
-			joinGame(props.gameId, name)
-		}
-	}
+	handleJoinGame: name => name.length ? joinGame(props.gameId, name) : null
 })
 
 const addState = compose(
@@ -56,6 +50,6 @@ const addState = compose(
 
 export default connect(
 	mapStateToProps,
-	{joinGame},
+	{ joinGame },
 	mergeProps
 )(addState(JoinGame))
