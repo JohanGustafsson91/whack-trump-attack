@@ -62,8 +62,8 @@ export const playGame = gameId => {
 	game.gameInfo.status = 'PLAYING'
 
 	return Observable.interval(1000)
-		.take(5)
-		.startWith(5)
+		.take(60)
+		.startWith(60)
 		.scan(acc => acc - 1)
 		.subscribe(
 			time => store.dispatch({ type: INTERNAL.UPDATE_GAME, gameId, time }),
